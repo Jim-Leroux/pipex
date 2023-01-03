@@ -1,0 +1,46 @@
+pipe()
+  |
+  +--- fork()
+         |
+         +--- fils1 [cmd1]
+         |      +-- dup2(fd_entree, STDIN))
+         |      +-- dup2(pipe[1], STDOUT)
+         |      +-- close(pipe[0])
+         |      +-- close(pipe[1])
+         |      +-- ft_split les options de commande
+         |          et chercher le bon chemin
+         |      +-- execve(cmd1_chemin, options, envp)
+         |
+         +--- fils2 [cmd2]
+         |      +-- dup2(pipe[0], STDIN)
+         |      +-- dup2(fd_sortie, STDOUT)
+         |      +-- close(pipe[0])
+         |      +-- close(pipe[1])
+         |      +-- ft_split les options de commande
+         |          et chercher le bon chemin
+         |      +-- execve(cmd2_chemin, options, envp)
+         |
+         +--- pere
+                +-- close(pipe[0])
+                +-- close(pipe[1])
+                +-- close(fd_entree)
+                +-- close(fd_sortie)
+                +-- waitpid(pid1, status, 0)
+                +-- waitpid(pid2, status, 0)
+
+
+if argv[1] == here_doc
+              |
+              +--- here_doc_logic
+                            |
+                            +--- create temp file (O_CREAT, _WRONLY, O_TRUNC, 664)
+                            +--- read line from STDIN
+                            +--- compare each line with the LIMITER (second arg)
+                            |                    +-- if line == LIMITER, return
+                            |                    +-- else write line inside temp file
+                            |
+                            +--- close temp file
+                            +--- open temp file (O_RDONLY)
+                            +--- dup2 temp file fd with STDIN
+                            +--- execute pipex
+                            +--- unlink temp file
