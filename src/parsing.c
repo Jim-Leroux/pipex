@@ -6,7 +6,7 @@
 /*   By: jileroux <jileroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 16:09:38 by jileroux          #+#    #+#             */
-/*   Updated: 2023/01/04 14:40:17 by jileroux         ###   ########.fr       */
+/*   Updated: 2023/01/04 17:13:48 by jileroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ int	parsing_cmd(int argc, char **argv, char **envp)
 	i = 2;
 	while (i < argc - 1)
 	{
+		if (ft_strcmp(argv[i], "") == 0)
+			return (write(2, "Error: Wrong command\n", 21), 0);
 		path = ft_get_path(envp, argv[i]);
 		if (path != NULL)
 			free(path);

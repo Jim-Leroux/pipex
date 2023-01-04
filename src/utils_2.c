@@ -6,7 +6,7 @@
 /*   By: jileroux <jileroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 12:03:31 by jileroux          #+#    #+#             */
-/*   Updated: 2023/01/03 16:24:55 by jileroux         ###   ########.fr       */
+/*   Updated: 2023/01/04 17:10:46 by jileroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	def_pipe(t_args *args_list)
 	{
 		if (args_list->here_doc == 1)
 			args_list->fds[OUT] = open(args_list->file, O_WRONLY
-					| O_APPEND, 0644);
+					| O_CREAT | O_APPEND, 0644);
 		else
 			args_list->fds[OUT] = open(args_list->file, O_WRONLY
 					| O_CREAT | O_TRUNC, 0644);
