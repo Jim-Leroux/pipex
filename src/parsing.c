@@ -6,7 +6,7 @@
 /*   By: jileroux <jileroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/15 16:09:38 by jileroux          #+#    #+#             */
-/*   Updated: 2022/12/19 15:55:04 by jileroux         ###   ########.fr       */
+/*   Updated: 2023/01/04 14:40:17 by jileroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	parsing(int argc, char **argv, char **envp)
 {
 	if (argc < 5)
 		return (write(2, "Error: Wrong arguments\n", 23), 0);
-	printf("ARGC VALUE : %d\n", argc);
 	if (ft_strcmp(argv[1], "here_doc") == 0 && argc < 6)
 		return (write(2, "Error: Wrong here_doc arguments\n", 32), 0);
 	else if (ft_strcmp(argv[1], "here_doc") == 0 && argc >= 6)
