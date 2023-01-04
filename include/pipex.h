@@ -6,7 +6,7 @@
 /*   By: jileroux <jileroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 13:42:29 by jileroux          #+#    #+#             */
-/*   Updated: 2022/12/15 16:21:18 by jileroux         ###   ########.fr       */
+/*   Updated: 2023/01/03 16:25:56 by jileroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ int		here_doc_logic(char **argv);
 int		parsing(int argc, char **argv, char **envp);
 int		parsing_file(int argc, char **argv);
 int		parsing_cmd(int argc, char **argv, char **envp);
+int		def_pipe(t_args *args_list);
 
 #endif

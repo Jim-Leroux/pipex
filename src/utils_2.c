@@ -6,7 +6,7 @@
 /*   By: jileroux <jileroux@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/08 12:03:31 by jileroux          #+#    #+#             */
-/*   Updated: 2022/12/19 16:28:59 by jileroux         ###   ########.fr       */
+/*   Updated: 2023/01/03 16:24:55 by jileroux         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,28 @@ int	go_pipex(t_args *args_list, char **envp)
 	{
 		waitpid(head->pid, NULL, 0);
 		head = head->next;
+	}
+	return (1);
+}
+
+int	def_pipe(t_args *args_list)
+{
+	if (args_list->redir_type == IN)
+	{
+		args_list->fds[IN] = open(args_list->file, O_RDONLY);
+		if (args_list->fds[IN] < 0)
+			return (0);
+	}
+	else if (args_list->redir_type == OUT)
+	{
+		if (args_list->here_doc == 1)
+			args_list->fds[OUT] = open(args_list->file, O_WRONLY
+					| O_APPEND, 0644);
+		else
+			args_list->fds[OUT] = open(args_list->file, O_WRONLY
+					| O_CREAT | O_TRUNC, 0644);
+		if (args_list->fds[OUT] < 0)
+			return (0);
 	}
 	return (1);
 }
